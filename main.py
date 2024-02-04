@@ -36,8 +36,14 @@ class TodoListResource(Resource):
         todos[todo_id] = args['task']
         return {todo_id: todos[todo_id]}
 
+class Todo(Resource):
+    def get(self):
+        return todos
+
+
 api.add_resource(TodoResource, '/todos/<int:todo_id>')
 api.add_resource(TodoListResource, '/todos')
+api.add_resource(Todo, '/')
 
 if __name__ == '__main__':
     app.run(debug=True)
